@@ -13,6 +13,7 @@ const FS = require('fs');
 const ConfigStore = require('configstore');
 const Config = require('electron-config');
 const ContextMenu = require('./context_menu');
+const FS = require('fs');
 const Menu = require('./menu');
 const Tray = electron.Tray;
 
@@ -359,6 +360,17 @@ function openMainWindow(opts) {
       mainWindow.hide();
     }
   });
+
+  mainWindow.webContents.on('dom-ready', function(event) {
+      FS.readFile('user-style.css', 'utf8', (err, data) => {
+          if (err) {
+              // That's OK; just means the file wasn't readable.
+              return;
+          }
+          mainWindow.webContents.insertCSS(data);
+      });
+  });
+
 }
 
 var quitting = false;
