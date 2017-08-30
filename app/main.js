@@ -7,13 +7,12 @@ const BrowserWindow = electron.BrowserWindow;
 const Shell = electron.shell;
 const dialog = electron.dialog;
 
-const path = require('path');
 const FS = require('fs');
+const path = require('path');
 
 const ConfigStore = require('configstore');
 const Config = require('electron-config');
 const ContextMenu = require('./context_menu');
-const FS = require('fs');
 const Menu = require('./menu');
 const Tray = electron.Tray;
 
